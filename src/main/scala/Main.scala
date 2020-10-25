@@ -1,6 +1,8 @@
 package Main
 
+import ASCIIArtGenerator.ASCIIArtGenerator
+
 object Main extends App {
-  val ASCIIArtGenerator: ASCIIArtGenerator = new ASCIIArtGenerator
-  ASCIIArtGenerator.generate(this.args)
+  val ASCIIArtGenerator: ASCIIArtGenerator = new ASCIIArtGenerator(this.args)
+  ASCIIArtGenerator.run()
 }
