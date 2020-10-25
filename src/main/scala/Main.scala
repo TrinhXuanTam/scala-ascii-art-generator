@@ -1,9 +1,8 @@
 package Main
 
 object Main extends App {
-  println("Hello there")
-
-
+  val ASCIIArtGenerator : ASCIIArtGenerator = new ASCIIArtGenerator(this.args)
+  ASCIIArtGenerator.generate()
 }
 
 object Foos {
