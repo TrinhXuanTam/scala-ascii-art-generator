@@ -1,5 +1,12 @@
 package scala
 
-class ASCIIArtGenerator(private val _args: Seq[String]) {
-  def generate() : Unit = ???
+import CommandLineParser.CommandLineParser
+
+
+class ASCIIArtGenerator() {
+  private val cmdParser: CommandLineParser = new CommandLineParser()
+
+  def generate(_args: Seq[String]): Unit = {
+    cmdParser.parse(_args)
+  }
 }

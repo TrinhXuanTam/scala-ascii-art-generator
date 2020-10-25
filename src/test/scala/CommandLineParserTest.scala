@@ -47,11 +47,16 @@ class CommandLineParserTest extends FunSuite {
 
     val cmdParser: CommandLineParser = new CommandLineParser
     val args: List[String] = List("--command", "--command2", "success")
+    val args2: List[String] = List("--command2", "another success")
+
     cmdParser.registerNoArgCommand("--command", noArgFunction)
     cmdParser.registerOneArgCommand("--command2", oneArgFunction)
     cmdParser.parse(args)
 
     assert(noArgFunctionResult)
     assert(oneArgFunctionResult == "success")
+
+    cmdParser.parse(args2)
+    assert(oneArgFunctionResult == "another success")
   }
 }
