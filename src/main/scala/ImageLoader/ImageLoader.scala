@@ -18,7 +18,7 @@ class ImageLoader {
 
   private def _checkFileExtension(file: File): Unit = {
     val extension = _getFileExtension(file.getName)
-    if (_allowedExtensions.contains(extension)) throw new IllegalArgumentException("Unsupported file extension!")
+    if (_allowedExtensions.contains(extension)) throw new IllegalArgumentException(s"Unsupported file extension: $extension!")
   }
 
   def _loadImage(file: File): Option[Image] = {

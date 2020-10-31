@@ -1,56 +1,55 @@
-import CommandLineParser.CommandLineParser
+import CommandLineParser.{CommandLineParser, CommandLineParserBuilder}
 import org.scalatest.FunSuite
-
 
 class CommandLineParserTest extends FunSuite {
   test("Command registration test") {
-    def noArgFunction(): Unit = {
+    def noArgFunction(): Unit =
       println("This is a no arg function!")
-    }
 
-    def oneArgFunction(arg: String): Unit = {
+    def oneArgFunction(arg: String): Unit =
       println(arg)
-    }
 
-    val cmdParser: CommandLineParser = new CommandLineParser
+    val cmdParserBuilder: CommandLineParserBuilder =
+      new CommandLineParserBuilder()
 
-    cmdParser.registerNoArgCommand("--command", noArgFunction)
-    cmdParser.registerOneArgCommand("--command2", oneArgFunction)
+    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
+    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
 
-    assert(cmdParser.commandExists("--command"))
-    assert(cmdParser.commandExists("--command2"))
+    assert(cmdParserBuilder.commandExists("--command"))
+    assert(cmdParserBuilder.commandExists("--command2"))
 
-    cmdParser.removeCommand("--command")
-    cmdParser.removeCommand("--command2")
+    cmdParserBuilder.removeCommand("--command")
+    cmdParserBuilder.removeCommand("--command2")
 
-    assert(!cmdParser.commandExists("--command"))
-    assert(!cmdParser.commandExists("--command2"))
+    assert(!cmdParserBuilder.commandExists("--command"))
+    assert(!cmdParserBuilder.commandExists("--command2"))
 
-    cmdParser.registerNoArgCommand("--command", noArgFunction)
-    cmdParser.registerOneArgCommand("--command2", oneArgFunction)
+    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
+    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
 
-    assert(cmdParser.commandExists("--command"))
-    assert(cmdParser.commandExists("--command2"))
+    assert(cmdParserBuilder.commandExists("--command"))
+    assert(cmdParserBuilder.commandExists("--command2"))
   }
 
   test("Command call test") {
     var noArgFunctionResult: Boolean = false
     var oneArgFunctionResult: String = "fail"
 
-    def noArgFunction(): Unit = {
+    def noArgFunction(): Unit =
       noArgFunctionResult = true
-    }
 
-    def oneArgFunction(arg: String): Unit = {
+    def oneArgFunction(arg: String): Unit =
       oneArgFunctionResult = arg
-    }
 
-    val cmdParser: CommandLineParser = new CommandLineParser
+    val cmdParserBuilder: CommandLineParserBuilder =
+      new CommandLineParserBuilder()
     val args: List[String] = List("--command", "--command2", "success")
     val args2: List[String] = List("--command2", "another success")
 
-    cmdParser.registerNoArgCommand("--command", noArgFunction)
-    cmdParser.registerOneArgCommand("--command2", oneArgFunction)
+    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
+    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
+    val cmdParser = cmdParserBuilder.build()
+
     cmdParser.parse(args)
 
     assert(noArgFunctionResult)
