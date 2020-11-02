@@ -1,38 +1,22 @@
 package CommandLineParser
 
 class CommandLineParserBuilder {
-  private val _noArgCommands: Commands[() => Unit] = new Commands()
-  private val _oneArgCommands: Commands[String => Unit] = new Commands()
+  private val _commands: Commands = new Commands()
 
-  private def _checkIfCommandExists(name: String): Unit =
-    if (commandExists(name))
-      throw new IllegalArgumentException(s"This command already exists: $name!")
+  private def _checkIfCommandExists(name: String): Unit = if (commandExists(name)) throw new IllegalArgumentException(s"This command already exists: $name!")
 
-  def commandExists(name: String): Boolean =
-    _noArgCommands.commandExists(name) || _oneArgCommands.commandExists(name)
+  def commandExists(name: String): Boolean = _commands.commandExists(name)
 
   def removeCommand(name: String): CommandLineParserBuilder = {
-    _noArgCommands.removeCommand(name)
-    _oneArgCommands.removeCommand(name)
+    _commands.removeCommand(name)
     this
   }
 
-  def registerNoArgCommand(
-    name: String,
-    func: () => Unit): CommandLineParserBuilder = {
+  def registerCommand(name: String, command: ICommand): CommandLineParserBuilder = {
     _checkIfCommandExists(name)
-    _noArgCommands.register(name, func)
+    _commands.register(name, command)
     this
   }
 
-  def registerOneArgCommand(
-    name: String,
-    func: String => Unit): CommandLineParserBuilder = {
-    _checkIfCommandExists(name)
-    _oneArgCommands.register(name, func)
-    this
-  }
-
-  def build(): CommandLineParser =
-    new CommandLineParser(_noArgCommands, _oneArgCommands)
+  def build(): CommandLineParser = new CommandLineParser(_commands)
 }

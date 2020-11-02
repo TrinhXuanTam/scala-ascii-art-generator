@@ -2,19 +2,16 @@ package ASCIIArtGenerator
 
 import java.awt.image.BufferedImage
 
-import CommandLineParser.{CommandLineParser, CommandLineParserBuilder}
+import CommandLineParser.{CommandLineParser, CommandLineParserBuilder, OneArgumentCommand}
 import ImageLoader._
 import Filters._
 
 class ASCIIArtGenerator(private val _args: Seq[String]) {
-  private val _filter: Filter = new Filter
   private var _image: Option[Image] = None
 
   def _registerCommands(): CommandLineParser =
     new CommandLineParserBuilder()
-      .registerOneArgCommand(
-        "--path",
-        (path: String) => _image = new ImageLoader().loadFromPath(path))
+      .registerCommand("--path", new OneArgumentCommand((path: String) => _image = new ImageLoader().loadFromPath(path)))
       .build()
 
   def run(): Unit =

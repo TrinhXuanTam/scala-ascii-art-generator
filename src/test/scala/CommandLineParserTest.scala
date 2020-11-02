@@ -1,19 +1,17 @@
-import CommandLineParser.{CommandLineParser, CommandLineParserBuilder}
+import CommandLineParser.{CommandLineParser, CommandLineParserBuilder, NoArgumentsCommand, OneArgumentCommand}
 import org.scalatest.FunSuite
 
 class CommandLineParserTest extends FunSuite {
   test("Command registration test") {
-    def noArgFunction(): Unit =
-      println("This is a no arg function!")
-
-    def oneArgFunction(arg: String): Unit =
-      println(arg)
+    val noArgCommand = new NoArgumentsCommand(() => {})
+    val oneArgCommand = new OneArgumentCommand(_ => {})
 
     val cmdParserBuilder: CommandLineParserBuilder =
       new CommandLineParserBuilder()
 
-    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
-    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
+    cmdParserBuilder
+      .registerCommand("--command", noArgCommand)
+      .registerCommand("--command2", oneArgCommand)
 
     assert(cmdParserBuilder.commandExists("--command"))
     assert(cmdParserBuilder.commandExists("--command2"))
@@ -24,8 +22,8 @@ class CommandLineParserTest extends FunSuite {
     assert(!cmdParserBuilder.commandExists("--command"))
     assert(!cmdParserBuilder.commandExists("--command2"))
 
-    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
-    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
+    cmdParserBuilder.registerCommand("--command", noArgCommand)
+    cmdParserBuilder.registerCommand("--command2", oneArgCommand)
 
     assert(cmdParserBuilder.commandExists("--command"))
     assert(cmdParserBuilder.commandExists("--command2"))
@@ -34,20 +32,15 @@ class CommandLineParserTest extends FunSuite {
   test("Command call test") {
     var noArgFunctionResult: Boolean = false
     var oneArgFunctionResult: String = "fail"
-
-    def noArgFunction(): Unit =
-      noArgFunctionResult = true
-
-    def oneArgFunction(arg: String): Unit =
-      oneArgFunctionResult = arg
-
-    val cmdParserBuilder: CommandLineParserBuilder =
-      new CommandLineParserBuilder()
     val args: List[String] = List("--command", "--command2", "success")
     val args2: List[String] = List("--command2", "another success")
+    val cmdParserBuilder: CommandLineParserBuilder = new CommandLineParserBuilder()
 
-    cmdParserBuilder.registerNoArgCommand("--command", noArgFunction)
-    cmdParserBuilder.registerOneArgCommand("--command2", oneArgFunction)
+    val noArgCommand: NoArgumentsCommand = new NoArgumentsCommand(() => noArgFunctionResult = true)
+    val oneArgumentCommand: OneArgumentCommand = new OneArgumentCommand((arg: String) => oneArgFunctionResult = arg)
+
+    cmdParserBuilder.registerCommand("--command", noArgCommand)
+    cmdParserBuilder.registerCommand("--command2", oneArgumentCommand)
     val cmdParser = cmdParserBuilder.build()
 
     cmdParser.parse(args)
@@ -58,4 +51,11 @@ class CommandLineParserTest extends FunSuite {
     cmdParser.parse(args2)
     assert(oneArgFunctionResult == "another success")
   }
+
+//  test("Invalid command test") {
+//    val cmdParser = new CommandLineParserBuilder().build()
+//    val args: List[String] = List("--command")
+//
+//    assertThrows(cmdParser.parse(args))
+//  }
 }
