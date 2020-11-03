@@ -1,0 +1,5 @@
+package Filters
+
+trait IFilter {
+
+}

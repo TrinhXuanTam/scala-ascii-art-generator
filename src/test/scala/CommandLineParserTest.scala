@@ -1,4 +1,5 @@
-import CommandLineParser.{CommandLineParser, CommandLineParserBuilder, NoArgumentsCommand, OneArgumentCommand}
+import CommandLineParser.{CommandLineParser, CommandLineParserBuilder}
+import _root_.CommandLineParser.CommandTypes.{NoArgumentsCommand, OneArgumentCommand}
 import org.scalatest.FunSuite
 
 class CommandLineParserTest extends FunSuite {
@@ -6,8 +7,7 @@ class CommandLineParserTest extends FunSuite {
     val noArgCommand = new NoArgumentsCommand(() => {})
     val oneArgCommand = new OneArgumentCommand(_ => {})
 
-    val cmdParserBuilder: CommandLineParserBuilder =
-      new CommandLineParserBuilder()
+    val cmdParserBuilder: CommandLineParserBuilder = new CommandLineParserBuilder()
 
     cmdParserBuilder
       .registerCommand("--command", noArgCommand)
@@ -52,10 +52,10 @@ class CommandLineParserTest extends FunSuite {
     assert(oneArgFunctionResult == "another success")
   }
 
-//  test("Invalid command test") {
-//    val cmdParser = new CommandLineParserBuilder().build()
-//    val args: List[String] = List("--command")
-//
-//    assertThrows(cmdParser.parse(args))
-//  }
+  test("Invalid command test") {
+    val cmdParser = new CommandLineParserBuilder().build()
+    val args: List[String] = List("--command")
+
+    assertThrows[IllegalArgumentException](cmdParser.parse(args))
+  }
 }

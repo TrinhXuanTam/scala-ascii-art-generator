@@ -1,4 +1,4 @@
-package ImageLoader
+package Image
 
 import java.awt.image.BufferedImage
 

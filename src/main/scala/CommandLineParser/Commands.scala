@@ -1,5 +1,7 @@
 package CommandLineParser
 
+import CommandLineParser.CommandTypes.ICommand
+
 import scala.collection.mutable
 
 class Commands {

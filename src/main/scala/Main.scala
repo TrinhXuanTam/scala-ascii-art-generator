@@ -1,8 +1,9 @@
-package Main
-
 import ASCIIArtGenerator.ASCIIArtGenerator
 
 object Main extends App {
-  val ASCIIArtGenerator: ASCIIArtGenerator = new ASCIIArtGenerator(this.args)
-  ASCIIArtGenerator.run()
+  try {
+    new ASCIIArtGenerator(this.args).run()
+  } catch {
+    case e: Exception => println(e.getMessage)
+  }
 }

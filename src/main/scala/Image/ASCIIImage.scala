@@ -1,0 +1,5 @@
+package Image
+
+class ASCIIImage {
+
+}

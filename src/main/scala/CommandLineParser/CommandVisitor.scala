@@ -1,11 +1,13 @@
 package CommandLineParser
 
+import CommandLineParser.CommandTypes.{NoArgumentsCommand, OneArgumentCommand}
+
 import scala.collection.mutable
 
-class CommandVisitor(commands: Commands, args: Seq[String]) {
+class CommandVisitor(args: Seq[String]) {
   private val _args = mutable.Queue[String](args: _*)
 
-  def executeCommands() : Unit = {
+  def visit(commands: Commands) : Unit = {
     while (_args.nonEmpty)
       commands.getCommand(_args.dequeue()).execute(this)
   }

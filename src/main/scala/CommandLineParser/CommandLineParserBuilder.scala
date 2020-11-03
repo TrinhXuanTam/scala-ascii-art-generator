@@ -1,5 +1,7 @@
 package CommandLineParser
 
+import CommandLineParser.CommandTypes.ICommand
+
 class CommandLineParserBuilder {
   private val _commands: Commands = new Commands()
 
