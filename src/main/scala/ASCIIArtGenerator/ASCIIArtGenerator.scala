@@ -1,7 +1,7 @@
 package ASCIIArtGenerator
 
-import CommandLineParser.{CommandLineParser, CommandLineParserBuilder}
-import _root_.CommandLineParser.CommandTypes.OneArgumentCommand
+import CommandLineParser._
+import CommandLineParser.CommandTypes._
 import Image.Image
 import ImageLoader._
 

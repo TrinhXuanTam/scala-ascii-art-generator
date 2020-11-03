@@ -1,5 +1,5 @@
 package Image
 
-class ASCIIImage {
-
+trait ASCIIImage {
+  val _data: Array[Array[Int]]
 }

@@ -9,7 +9,7 @@ import ImageLoader.Loaders.{GIFLoader, JPGLoader, PNGLoader}
 class FileImageLoader {
   private def _getFileExtension(name: String): String = {
     val index = name.lastIndexOf('.')
-    if (index < 0) throw new IllegalArgumentException("Unsupported file!")
+    require(index >= 0, "Unsupported file!")
     name.substring(index)
   }
 
