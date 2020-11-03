@@ -1,6 +1,6 @@
 package ASCIIArtGenerator
 
-import java.io.{OutputStream, PrintStream}
+import java.io.{File, FileOutputStream, OutputStream, PrintStream}
 
 import ASCIIImage.{ASCIIImage, ASCIIImageFactory, ASCIIImageSaver}
 import CommandLineParser._
@@ -15,13 +15,19 @@ class ASCIIArtGenerator(private val _args: Seq[String]) {
   private val _asciiFilterBuilder = new ASCIIFilterBuilder
   private val _outputBuffers = new mutable.HashSet[OutputStream]
 
-  private def _registerCommands(): CommandLineParser =
+  private def _registerCommands(): CommandLineParser = {
     new CommandLineParserBuilder()
       .registerCommand("--path", new OneArgumentCommand((path: String) => _image = Some(new Image(new PathImageLoader().load(path)))))
       .registerCommand("--uri", new OneArgumentCommand((uri: String) => _image = Some(new Image(new URIImageLoader().load(uri)))))
       .registerCommand("--rotate", new OneArgumentCommand((degrees: String) => _asciiFilterBuilder.addFilter(new RotateASCIIFilter(degrees))))
       .registerCommand("--output-console", new NoArgumentsCommand(() => _outputBuffers.add(System.out)))
+      .registerCommand("--output-file", new OneArgumentCommand((path :String) => {
+        val file = new File(path)
+        file.createNewFile()
+        _outputBuffers.add(new FileOutputStream(file, false))
+      }))
       .build()
+  }
 
   private def _closeStreams(): Unit = {
     for(outputStream <- _outputBuffers)

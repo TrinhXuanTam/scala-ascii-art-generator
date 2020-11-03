@@ -20,8 +20,8 @@ class ASCIIImageSaver {
   }
 
   private def _saveToStream(data: Array[Array[Char]], width: Int, height: Int, outputStream: OutputStream): Unit = {
-    for(x <- 0 until width) {
-      for( y <- 0 until height) {
+    for(y <- 0 until height) {
+      for(x <- 0 until width) {
         outputStream.write(data(x)(y))
       }
       outputStream.write('\n')
