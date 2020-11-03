@@ -1,5 +1,0 @@
-package Filters
-
-trait IFilter {
-
-}

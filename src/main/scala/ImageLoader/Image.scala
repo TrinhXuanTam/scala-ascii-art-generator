@@ -1,4 +1,4 @@
-package Image
+package ImageLoader
 
 import java.awt.Color
 import java.awt.image.BufferedImage

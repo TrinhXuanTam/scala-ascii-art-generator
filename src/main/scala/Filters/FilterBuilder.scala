@@ -1,4 +1,0 @@
-package Filters
-
-class FilterBuilder {
-}

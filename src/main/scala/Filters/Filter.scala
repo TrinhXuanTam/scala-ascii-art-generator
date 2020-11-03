@@ -1,5 +1,0 @@
-package Filters
-
-class Filter {
-
-}
