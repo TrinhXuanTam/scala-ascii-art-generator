@@ -4,7 +4,7 @@ import java.io.{File, FileOutputStream, OutputStream, PrintStream}
 
 import ASCIIImage.{ASCIIImage, ASCIIImageFactory, ASCIIImageSaver}
 import CommandLineParser._
-import Filters.{ASCIIFilterBuilder, RotateASCIIFilter}
+import Filters.{ASCIIFilterBuilder, BrightnessASCIIFilter, FlipASCIIFilter, InvertASCIIFilter, RotateASCIIFilter, ScaleASCIIFilter}
 import _root_.CommandLineParser.CommandTypes._
 import ImageLoader.{Image, _}
 
@@ -20,6 +20,10 @@ class ASCIIArtGenerator(private val _args: Seq[String]) {
       .registerCommand("--path", new OneArgumentCommand((path: String) => _image = Some(new Image(new PathImageLoader().load(path)))))
       .registerCommand("--uri", new OneArgumentCommand((uri: String) => _image = Some(new Image(new URIImageLoader().load(uri)))))
       .registerCommand("--rotate", new OneArgumentCommand((degrees: String) => _asciiFilterBuilder.addFilter(new RotateASCIIFilter(degrees))))
+      .registerCommand("--flip", new OneArgumentCommand((direction: String) => _asciiFilterBuilder.addFilter(new FlipASCIIFilter(direction))))
+      .registerCommand("--brightness", new OneArgumentCommand((brightness: String) => _asciiFilterBuilder.addFilter(new BrightnessASCIIFilter(brightness))))
+      .registerCommand("--scale", new OneArgumentCommand((scaleFactor: String) => _asciiFilterBuilder.addFilter(new ScaleASCIIFilter(scaleFactor))))
+      .registerCommand("--invert", new NoArgumentsCommand(() => _asciiFilterBuilder.addFilter(new InvertASCIIFilter())))
       .registerCommand("--output-console", new NoArgumentsCommand(() => _outputBuffers.add(System.out)))
       .registerCommand("--output-file", new OneArgumentCommand((path :String) => {
         val file = new File(path)
