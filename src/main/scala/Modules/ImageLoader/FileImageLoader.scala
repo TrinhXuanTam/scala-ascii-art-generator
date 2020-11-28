@@ -3,10 +3,7 @@ package Modules.ImageLoader
 import java.awt.image.BufferedImage
 import java.io.File
 
-import scala.collection.mutable
-
-class FileImageLoader {
-  private val _loaders = mutable.HashMap[String, ILoader]()
+class FileImageLoader(val _loaders: Map[String, ILoader]) {
 
   private def _getFileExtension(name: String): String = {
     val index = name.lastIndexOf('.')

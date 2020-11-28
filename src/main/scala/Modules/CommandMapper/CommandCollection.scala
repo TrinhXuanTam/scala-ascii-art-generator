@@ -2,12 +2,9 @@ package Modules.CommandMapper
 
 import Modules.CommandMapper.CommandTypes.ICommand
 
-import scala.collection.mutable
-
 // Collection of commands
 class CommandCollection {
-  protected val _commands: mutable.HashMap[String, ICommand] =
-    new mutable.HashMap()
+  protected var _commands: Map[String, ICommand] = Map()
 
   // Check if command exists
   def commandExists(key: String): Boolean = _commands.isDefinedAt(key)
@@ -15,11 +12,11 @@ class CommandCollection {
   // Insert a new string & command pair into the hash map
   def register(key: String, command: ICommand): Unit = {
     require(!commandExists(key), s"This command already exists: $key!")
-    _commands.addOne(key, command)
+    _commands = _commands + (key -> command)
   }
 
   // Remove a command from the hashmap
-  def removeCommand(key: String): Unit = _commands.remove(key)
+  def removeCommand(key: String): Unit = _commands = _commands - key
 
   // Retrieve a command from the hashmap
   def getCommand(key: String): ICommand = {

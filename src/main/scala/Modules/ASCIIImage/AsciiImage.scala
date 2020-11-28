@@ -25,5 +25,5 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
   def getGrayScaleData: GrayscaleGrid = _grayscaleGrid
 
   def getArt: Array[Array[Char]] =
-    _grayscaleGrid.getRawData().map(_.map(grayscaleToChar))
+    _grayscaleGrid.getRawData.map(_.map(grayscaleToChar))
 }
