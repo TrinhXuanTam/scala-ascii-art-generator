@@ -7,8 +7,6 @@ import Models.Image
 import Modules.ASCIIImage.{IAsciiFilter, IAsciiOutputLocation}
 import Services.{AsciiService, ImageService, InputService, OutputService}
 
-import scala.collection.mutable.ArrayBuffer
-
 // Main controller
 class ASCIIArtGenerator {
   val _outputService = new OutputService
@@ -16,11 +14,12 @@ class ASCIIArtGenerator {
 
   // Transform an image into ASCII art
   def run(args: Seq[String]): Unit = {
+
     // Init variables
-    var filters: List[IAsciiFilter] = List[IAsciiFilter]()
     var outputLocations: Set[IAsciiOutputLocation] = Set[IAsciiOutputLocation]()
-    val inputService = new InputService
+    var filters: List[IAsciiFilter] = List[IAsciiFilter]()
     var image: Option[Image] = None
+    val inputService = new InputService
 
     // Bind callback functions to objects
     inputService.mapStringToCallback("--invert", () => filters = filters.appended(new InvertASCIIFilter()))
@@ -29,14 +28,17 @@ class ASCIIArtGenerator {
                 .mapStringToCallback("--rotate", (degrees: String) => filters = filters.appended(new RotateASCIIFilter(degrees)))
                 .mapStringToCallback("--scale", (scaleFactor: String) => filters = filters.appended(new ScaleASCIIFilter(scaleFactor)))
                 .mapStringToCallback("--brightness", (brightness: String) => filters = filters.appended(new BrightnessASCIIFilter(brightness)))
-                .mapStringToCallback("--output-file", (path: String) => outputLocations = outputLocations + new FileOutput(path))
-                .mapStringToCallback("--output-console", () => outputLocations = outputLocations + new ConsoleOutput())
-
-    inputService.processInput(args)
+                .mapStringToCallback("--output-file", (path: String) => outputLocations = outputLocations + FileOutput(path))
+                .mapStringToCallback("--output-console", () => outputLocations = outputLocations + ConsoleOutput())
+                .processInput(args)
 
     require(image.nonEmpty, "Failed to load the image!")
+
+    //Apply filters
     val src = AsciiImageFactory.fromImage(image.get)
     val res = _asciiService.applyFilters(filters, src)
+
+    // Output the final ascii image
     _outputService.output(res, outputLocations.toSeq)
   }
 }

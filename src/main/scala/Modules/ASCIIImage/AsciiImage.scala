@@ -6,7 +6,7 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
 
   val height: Int = _grayscaleGrid.height
 
-  private def grayscaleToChar(grayscale: Int): Char = {
+  private def _grayscaleToChar(grayscale: Int): Char = {
     require(0 <= grayscale && grayscale <= 255, "Invalid greyscale value!")
     grayscale match {
       case grayscale if grayscale < 25  => '@'
@@ -25,5 +25,5 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
   def getGrayScaleData: GrayscaleGrid = _grayscaleGrid
 
   def getArt: Array[Array[Char]] =
-    _grayscaleGrid.getRawData.map(_.map(grayscaleToChar))
+    _grayscaleGrid.getRawData.map(_.map(_grayscaleToChar))
 }

@@ -11,9 +11,12 @@ case class FileOutput(private val _path: String) extends IAsciiOutputLocation {
   override def output(image: AsciiImage): Unit = {
     // Create file if it doesn't exist
     _file.createNewFile()
+
+    val asciiArt = image.getArt
+
     for (y <- 0 until image.height) {
       for (x <- 0 until image.width)
-        _oStream.write(image.getArt(x)(y))
+        _oStream.write(asciiArt(x)(y))
       _oStream.write('\n')
     }
     _oStream.flush()
