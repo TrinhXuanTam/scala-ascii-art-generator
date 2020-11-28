@@ -1,7 +1,7 @@
 package Services
 
-import modules.CommandMapper.CommandMapper
-import modules.CommandMapper.CommandTypes.{
+import Modules.CommandMapper.CommandMapper
+import Modules.CommandMapper.CommandTypes.{
   NoArgumentsCommand,
   OneArgumentCommand
 }
