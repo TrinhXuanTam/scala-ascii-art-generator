@@ -3,6 +3,8 @@ package Core.OutputLocations
 import Modules.ASCIIImage.{AsciiImage, IAsciiOutputLocation}
 
 case class ConsoleOutput() extends IAsciiOutputLocation {
+
+  // Print ASCII art to console
   override def output(image: AsciiImage): Unit = {
     val asciiArt = image.getArt
 
@@ -15,5 +17,6 @@ case class ConsoleOutput() extends IAsciiOutputLocation {
     System.out.flush()
   }
 
+  // Do nothing in order to leave the terminal open
   override def close(): Unit = {}
 }

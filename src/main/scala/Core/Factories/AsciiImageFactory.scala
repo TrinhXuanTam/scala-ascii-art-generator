@@ -4,6 +4,7 @@ import Models.Image
 import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid}
 
 case object AsciiImageFactory {
+  // Convert an image to grayscale
   def _createGrayscaleGrid(image: Image): GrayscaleGrid = {
     val grid = Array.ofDim[Int](image.width, image.height)
 
@@ -20,6 +21,7 @@ case object AsciiImageFactory {
     new GrayscaleGrid(grid)
   }
 
+  // Create an ASCII image from a grayscale image
   def fromImage(image: Image): AsciiImage =
     new AsciiImage(_createGrayscaleGrid(image))
 

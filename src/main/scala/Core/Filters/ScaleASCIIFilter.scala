@@ -2,12 +2,15 @@ package Core.Filters
 
 import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
+// ASCII filter that scales up or down an ASCII image
+// Only factors of 0.25, 1 and 4 are supported
 class ScaleASCIIFilter(private val _scaleFactor: String) extends IAsciiFilter {
 
   private def _scale025(image: AsciiImage): AsciiImage = {
     val src = image.getGrayScaleData
     val res = new GrayscaleGrid(image.width / 2, image.height / 2)
 
+    // Save the average of neighbouring pixels
     for {
       x <- 0 until image.width / 2
       y <- 0 until image.height / 2
@@ -21,6 +24,7 @@ class ScaleASCIIFilter(private val _scaleFactor: String) extends IAsciiFilter {
     val src = image.getGrayScaleData
     val res = new GrayscaleGrid(image.width * 2, image.height * 2)
 
+    // Replicate every pixel four times
     for {
       x <- 0 until image.width
       y <- 0 until image.height

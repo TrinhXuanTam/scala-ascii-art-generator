@@ -1,10 +1,11 @@
-package Services
+package Repositories
 
 import Modules.ASCIIImage.{AsciiImage, IAsciiOutputLocation}
 
-class OutputService {
+class AsciiRepository {
 
-  def output(
+  // Save the ASCII image and close the saving location
+  def saveToOutputLocation(
     image: AsciiImage,
     outputLocations: Seq[IAsciiOutputLocation]): Unit =
     for (location <- outputLocations) {

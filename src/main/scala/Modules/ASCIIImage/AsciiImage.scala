@@ -6,6 +6,7 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
 
   val height: Int = _grayscaleGrid.height
 
+  // Convert grayscale value to an ASCII character
   private def _grayscaleToChar(grayscale: Int): Char = {
     require(0 <= grayscale && grayscale <= 255, "Invalid greyscale value!")
     grayscale match {
@@ -24,6 +25,7 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
 
   def getGrayScaleData: GrayscaleGrid = _grayscaleGrid
 
+  // Generate the ASCII art
   def getArt: Array[Array[Char]] =
     _grayscaleGrid.getRawData.map(_.map(_grayscaleToChar))
 }

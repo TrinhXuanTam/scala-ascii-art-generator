@@ -2,7 +2,10 @@ package Core.Filters
 
 import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
+// ASCII filter that flips the image in a given direction
 class FlipASCIIFilter(direction: String) extends IAsciiFilter {
+
+  // ASCII image can be only flipped on the X or Y axis
   require(
     direction.equalsIgnoreCase("y") || direction.equalsIgnoreCase("x"),
     "Invalid flip direction entered!")
