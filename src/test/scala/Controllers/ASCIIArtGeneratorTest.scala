@@ -1,4 +1,4 @@
-package ControllerTests
+package Controllers
 
 import java.io.File
 import java.nio.file.Files
