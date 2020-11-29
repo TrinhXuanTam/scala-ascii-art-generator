@@ -1,4 +1,4 @@
-package Modules.AsciiFilterTests
+package Core.AsciiFilterTests
 
 import Core.Filters.ScaleAsciiFilter
 import Modules.AsciiImage.{AsciiImage, GrayscaleGrid}

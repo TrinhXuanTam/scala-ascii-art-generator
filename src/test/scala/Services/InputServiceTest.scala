@@ -1,4 +1,5 @@
-import Services.InputService
+package Services
+
 import org.scalatest.FunSuite
 
 class InputServiceTest extends FunSuite {
