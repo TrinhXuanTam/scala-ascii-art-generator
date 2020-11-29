@@ -3,7 +3,7 @@ package Core.Filters
 import Modules.AsciiImage.{AsciiImage, IAsciiFilter}
 
 // ASCII filter that inverts the grayscale values
-class InvertASCIIFilter extends IAsciiFilter {
+class InvertAsciiFilter extends IAsciiFilter {
   override def transform(image: AsciiImage): AsciiImage = {
     val res = image.getGrayScaleData
 

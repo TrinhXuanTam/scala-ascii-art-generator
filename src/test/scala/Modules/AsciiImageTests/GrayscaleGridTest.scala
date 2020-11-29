@@ -41,4 +41,10 @@ class GrayscaleGridTest extends FunSuite {
 
     assert(grayscaleGrid(0)(0) == 1 && rawData(0)(0) == 99)
   }
+
+  test("Empty grid test") {
+    val grayscaleGrid = new GrayscaleGrid(1, 2)
+    assert(grayscaleGrid.width == 1)
+    assert(grayscaleGrid.height == 2)
+  }
 }

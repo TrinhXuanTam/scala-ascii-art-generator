@@ -4,7 +4,11 @@ import Modules.AsciiImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
 // ASCII filter that scales up or down an ASCII image
 // Only factors of 0.25, 1 and 4 are supported
-class ScaleASCIIFilter(private val _scaleFactor: String) extends IAsciiFilter {
+class ScaleAsciiFilter(private val _scaleFactor: String) extends IAsciiFilter {
+  require(
+    _scaleFactor.equals("1") || _scaleFactor.equals("0.25") || _scaleFactor
+      .equals("4"),
+    "Only scaling factors 0.25, 1 and 4 are supported!")
 
   private def _scale025(image: AsciiImage): AsciiImage = {
     val src = image.getGrayScaleData
@@ -38,15 +42,10 @@ class ScaleASCIIFilter(private val _scaleFactor: String) extends IAsciiFilter {
     new AsciiImage(res)
   }
 
-  override def transform(image: AsciiImage): AsciiImage = {
-    require(
-      _scaleFactor.equals("1") || _scaleFactor.equals("0.25") || _scaleFactor
-        .equals("4"),
-      "Only scaling factors 0.25, 1 and 4 are supported!")
+  override def transform(image: AsciiImage): AsciiImage =
     _scaleFactor match {
       case "0.25" => _scale025(image)
       case "1"    => image
       case "4"    => _scale4(image)
     }
-  }
 }

@@ -23,7 +23,8 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
     }
   }
 
-  def getGrayScaleData: GrayscaleGrid = _grayscaleGrid
+  def getGrayScaleData: GrayscaleGrid =
+    new GrayscaleGrid(_grayscaleGrid.getRawData)
 
   // Generate the ASCII art
   def getArt: Array[Array[Char]] =

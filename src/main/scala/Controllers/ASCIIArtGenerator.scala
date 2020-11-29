@@ -2,11 +2,11 @@ package Controllers
 
 import Core.Factories.AsciiImageFactory
 import Core.Filters.{
-  BrightnessASCIIFilter,
-  FlipASCIIFilter,
-  InvertASCIIFilter,
-  RotateASCIIFilter,
-  ScaleASCIIFilter
+  BrightnessAsciiFilter,
+  FlipAsciiFilter,
+  InvertAsciiFilter,
+  RotateAsciiFilter,
+  ScaleAsciiFilter
 }
 import Core.OutputLocations.{ConsoleOutput, FileOutput}
 import Models.Image
@@ -30,26 +30,26 @@ class ASCIIArtGenerator {
     inputService
       .mapStringToCallback(
         "--invert",
-        () => filters = filters.appended(new InvertASCIIFilter()))
+        () => filters = filters.appended(new InvertAsciiFilter()))
       .mapStringToCallback(
         "--image",
         (path: String) => image = Some(new ImageService().loadFromPath(path)))
       .mapStringToCallback(
         "--flip",
         (direction: String) =>
-          filters = filters.appended(new FlipASCIIFilter(direction)))
+          filters = filters.appended(new FlipAsciiFilter(direction)))
       .mapStringToCallback(
         "--rotate",
         (degrees: String) =>
-          filters = filters.appended(new RotateASCIIFilter(degrees)))
+          filters = filters.appended(new RotateAsciiFilter(degrees)))
       .mapStringToCallback(
         "--scale",
         (scaleFactor: String) =>
-          filters = filters.appended(new ScaleASCIIFilter(scaleFactor)))
+          filters = filters.appended(new ScaleAsciiFilter(scaleFactor)))
       .mapStringToCallback(
         "--brightness",
         (brightness: String) =>
-          filters = filters.appended(new BrightnessASCIIFilter(brightness)))
+          filters = filters.appended(new BrightnessAsciiFilter(brightness)))
       .mapStringToCallback(
         "--output-file",
         (path: String) => outputLocations = outputLocations + FileOutput(path))

@@ -3,14 +3,14 @@ package Core.Filters
 import Modules.AsciiImage.{AsciiImage, IAsciiFilter}
 
 // ASCII filter that changes the brightness of an ASCII image
-class BrightnessASCIIFilter(brightness: String) extends IAsciiFilter {
+class BrightnessAsciiFilter(brightness: String) extends IAsciiFilter {
   // Brightness value can be negative
   private val _brightness = Integer.parseInt(brightness)
 
   private def addBrightness(grayscale: Int): Int = {
     var res = grayscale + _brightness
     if (res < 0) res = 0
-    if (res > 255) res = 0
+    if (res > 255) res = 255
     res
   }
 
