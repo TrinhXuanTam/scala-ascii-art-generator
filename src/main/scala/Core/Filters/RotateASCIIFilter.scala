@@ -1,6 +1,6 @@
 package Core.Filters
 
-import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
+import Modules.AsciiImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
 // ASCII filter that rotates the image by any multiple of 90
 class RotateASCIIFilter(degrees: String) extends IAsciiFilter {

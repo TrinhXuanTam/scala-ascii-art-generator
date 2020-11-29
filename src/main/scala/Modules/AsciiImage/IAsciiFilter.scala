@@ -1,4 +1,4 @@
-package Modules.ASCIIImage
+package Modules.AsciiImage
 
 // ASCII filter interface
 trait IAsciiFilter {

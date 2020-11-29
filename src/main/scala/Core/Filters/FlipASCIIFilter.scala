@@ -1,6 +1,6 @@
 package Core.Filters
 
-import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
+import Modules.AsciiImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
 // ASCII filter that flips the image in a given direction
 class FlipASCIIFilter(direction: String) extends IAsciiFilter {

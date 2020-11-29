@@ -1,6 +1,6 @@
 package Core.Filters
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiFilter}
+import Modules.AsciiImage.{AsciiImage, IAsciiFilter}
 
 // ASCII filter that inverts the grayscale values
 class InvertASCIIFilter extends IAsciiFilter {

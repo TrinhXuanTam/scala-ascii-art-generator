@@ -1,6 +1,6 @@
 package Core.Filters
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiFilter}
+import Modules.AsciiImage.{AsciiImage, IAsciiFilter}
 
 // ASCII filter that changes the brightness of an ASCII image
 class BrightnessASCIIFilter(brightness: String) extends IAsciiFilter {

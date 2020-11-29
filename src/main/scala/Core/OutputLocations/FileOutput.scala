@@ -2,7 +2,7 @@ package Core.OutputLocations
 
 import java.io.{File, FileOutputStream}
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiOutputLocation}
+import Modules.AsciiImage.{AsciiImage, IAsciiOutputLocation}
 
 case class FileOutput(private val _path: String) extends IAsciiOutputLocation {
   private val _file = new File(_path)

@@ -1,4 +1,4 @@
-package Modules.ASCIIImage
+package Modules.AsciiImage
 
 // ASCII output location interface
 trait IAsciiOutputLocation {

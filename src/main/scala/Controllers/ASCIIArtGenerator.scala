@@ -10,7 +10,7 @@ import Core.Filters.{
 }
 import Core.OutputLocations.{ConsoleOutput, FileOutput}
 import Models.Image
-import Modules.ASCIIImage.{IAsciiFilter, IAsciiOutputLocation}
+import Modules.AsciiImage.{IAsciiFilter, IAsciiOutputLocation}
 import Services.{AsciiService, ImageService, InputService}
 
 // Main controller

@@ -1,6 +1,6 @@
 package Services
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiFilter, IAsciiOutputLocation}
+import Modules.AsciiImage.{AsciiImage, IAsciiFilter, IAsciiOutputLocation}
 import Repositories.AsciiRepository
 
 class AsciiService {

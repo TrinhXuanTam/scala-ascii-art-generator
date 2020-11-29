@@ -1,4 +1,4 @@
-package Modules.ASCIIImage
+package Modules.AsciiImage
 
 class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
 

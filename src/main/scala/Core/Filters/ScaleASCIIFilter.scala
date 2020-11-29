@@ -1,6 +1,6 @@
 package Core.Filters
 
-import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
+import Modules.AsciiImage.{AsciiImage, GrayscaleGrid, IAsciiFilter}
 
 // ASCII filter that scales up or down an ASCII image
 // Only factors of 0.25, 1 and 4 are supported

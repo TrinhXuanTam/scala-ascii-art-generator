@@ -1,6 +1,6 @@
 package Core.OutputLocations
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiOutputLocation}
+import Modules.AsciiImage.{AsciiImage, IAsciiOutputLocation}
 
 case class ConsoleOutput() extends IAsciiOutputLocation {
 

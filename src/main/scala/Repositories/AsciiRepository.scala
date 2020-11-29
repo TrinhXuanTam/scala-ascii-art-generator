@@ -1,6 +1,6 @@
 package Repositories
 
-import Modules.ASCIIImage.{AsciiImage, IAsciiOutputLocation}
+import Modules.AsciiImage.{AsciiImage, IAsciiOutputLocation}
 
 class AsciiRepository {
 

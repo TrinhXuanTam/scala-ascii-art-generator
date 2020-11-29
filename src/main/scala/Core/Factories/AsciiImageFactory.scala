@@ -1,7 +1,7 @@
 package Core.Factories
 
 import Models.Image
-import Modules.ASCIIImage.{AsciiImage, GrayscaleGrid}
+import Modules.AsciiImage.{AsciiImage, GrayscaleGrid}
 
 case object AsciiImageFactory {
   // Convert an image to grayscale
