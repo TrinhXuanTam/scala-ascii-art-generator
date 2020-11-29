@@ -15,7 +15,7 @@ import Services.{AsciiService, ImageService, InputService}
 
 // Main controller
 class ASCIIArtGenerator {
-  val _asciiService = new AsciiService
+  private val _asciiService = new AsciiService
 
   // Transform an image into ASCII art
   def run(args: Seq[String]): Unit = {
