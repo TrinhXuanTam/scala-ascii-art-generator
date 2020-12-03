@@ -13,6 +13,7 @@ class RotateAsciiFilterTest extends FunSuite {
     assertThrows[IllegalArgumentException](new RotateAsciiFilter("1"))
     assertThrows[IllegalArgumentException](new RotateAsciiFilter("150"))
     assertThrows[IllegalArgumentException](new RotateAsciiFilter("250"))
+    assertThrows[IllegalArgumentException](new RotateAsciiFilter("invalid"))
   }
 
   test("Clockwise rotation test") {

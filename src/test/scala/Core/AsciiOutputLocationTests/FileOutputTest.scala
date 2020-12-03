@@ -9,6 +9,7 @@ import org.scalatest.FunSuite
 import scala.io.Source.fromFile
 
 class FileOutputTest extends FunSuite {
+  // Create dummy image
   private val _image = new AsciiImage(new GrayscaleGrid(Array(Array(1))))
 
   test("Write test") {
@@ -19,6 +20,8 @@ class FileOutputTest extends FunSuite {
     val src = fromFile(tmpFilePath.toString)
     val _lines = src.getLines()
     assert(_lines.hasNext)
+
+    // 1 maps to @
     assert(_lines.next() == "@")
 
     fileOutputLocation.close()

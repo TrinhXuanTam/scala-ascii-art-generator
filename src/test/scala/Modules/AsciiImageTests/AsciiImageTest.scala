@@ -14,6 +14,7 @@ class AsciiImageTest extends FunSuite with MockitoSugar {
   test("Grayscale to ASCII art test") {
     val asciiImage = new AsciiImage(_grayscaleGridMock)
 
+    // Test every value
     assert(
       asciiImage.getArt(0) sameElements Array('@', '%', '#', '*', '+', '=', '-',
         ':', '.', ' '))

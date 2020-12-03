@@ -12,6 +12,7 @@ class ScaleAsciiFilterTest extends FunSuite {
     assertThrows[IllegalArgumentException](new ScaleAsciiFilter("0"))
     assertThrows[IllegalArgumentException](new ScaleAsciiFilter("3"))
     assertThrows[IllegalArgumentException](new ScaleAsciiFilter("0.1"))
+    assertThrows[IllegalArgumentException](new ScaleAsciiFilter("invalid"))
   }
 
   test("Scale factor 1 test") {

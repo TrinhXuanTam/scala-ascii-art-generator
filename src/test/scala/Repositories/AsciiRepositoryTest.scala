@@ -13,6 +13,7 @@ class AsciiRepositoryTest extends FunSuite with MockitoSugar {
     var closed = false
     var closed2 = false
 
+    // Create IOutputLocation mock
     class OutputLocationMock extends IAsciiOutputLocation {
       override def output(image: AsciiImage): Unit = success = true
 

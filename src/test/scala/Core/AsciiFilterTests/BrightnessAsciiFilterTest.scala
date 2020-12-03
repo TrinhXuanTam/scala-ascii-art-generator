@@ -36,4 +36,8 @@ class BrightnessAsciiFilterTest extends FunSuite {
     assert(res(1)(0) == src(1)(0))
     assert(res(1)(1) == src(1)(1))
   }
+
+  test("Invalid input test") {
+    assertThrows[IllegalArgumentException](new BrightnessAsciiFilter("invalid"))
+  }
 }

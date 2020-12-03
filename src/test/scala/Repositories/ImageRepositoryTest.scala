@@ -23,4 +23,10 @@ class ImageRepositoryTest extends FunSuite {
       y <- 0 until res.height
     } assert(res.getColorAt(x, y) == new Color(src.getRGB(x, y)))
   }
+
+  test("Forbidden extension test") {
+    val file = new File(getClass.getResource("/package_diagram.svg").getFile)
+    val imageRepository = new ImageRepository
+    assertThrows[IllegalArgumentException](imageRepository.fromPath(file.getAbsolutePath))
+  }
 }
