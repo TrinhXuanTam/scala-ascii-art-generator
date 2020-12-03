@@ -26,7 +26,7 @@ class ASCIIArtGenerator {
     var outputLocations: Set[IAsciiOutputLocation] = Set[IAsciiOutputLocation]()
     val inputService = new InputService
 
-    // Bind callback functions to objects
+    // Bind callback functions to commandline input
     inputService
       .mapStringToCallback(
         "--invert",

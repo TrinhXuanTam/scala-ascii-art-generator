@@ -23,6 +23,7 @@ class AsciiImage(private val _grayscaleGrid: GrayscaleGrid) {
     }
   }
 
+  // Get a copy of the grayscale grid
   def getGrayScaleData: GrayscaleGrid =
     new GrayscaleGrid(_grayscaleGrid.getRawData)
 

@@ -72,4 +72,33 @@ class ASCIIArtGeneratorTest extends FunSuite {
 
     res.close()
   }
+
+  test("Forbidden image format test") {
+    val singlePixelImageFile =
+      new File(getClass.getResource("/package_diagram.svg").getFile)
+
+    // Create temporary file for saving
+    val tmpFile =
+      Files.createTempFile("ASCII_art_generator_test_", ".txt").toFile
+
+    // Create input arguments
+    val inputArgs = Seq(
+      "--image",
+      singlePixelImageFile.getAbsolutePath,
+      "--output-file",
+      tmpFile.getAbsolutePath)
+
+    assertThrows[IllegalArgumentException](ASCIIArtGenerator.run(inputArgs))
+  }
+
+  test("Image not loaded test") {
+    // Create temporary file for saving
+    val tmpFile =
+      Files.createTempFile("ASCII_art_generator_test_", ".txt").toFile
+
+    // Create input arguments
+    val inputArgs = Seq("--output-file", tmpFile.getAbsolutePath)
+
+    assertThrows[IllegalArgumentException](ASCIIArtGenerator.run(inputArgs))
+  }
 }

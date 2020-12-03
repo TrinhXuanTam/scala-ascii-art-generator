@@ -11,6 +11,10 @@ class GrayscaleGrid(private val _data: Array[Array[Int]]) {
       el.length == _data(0).length),
     "Invalid image dimension!")
 
+  require(
+    _data.forall(_.forall(el => 0 <= el && el <= 255)),
+    "Invalid grayscale value!")
+
   val width: Int = _data.length
 
   val height: Int = _data(0).length

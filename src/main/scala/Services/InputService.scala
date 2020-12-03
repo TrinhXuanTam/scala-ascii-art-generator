@@ -6,6 +6,7 @@ import Modules.CommandMapper.CommandTypes.{
   OneArgumentCommand
 }
 
+// Maps commands from CMD to callback functions
 class InputService {
   private val _cmdParser = new CommandMapper
 

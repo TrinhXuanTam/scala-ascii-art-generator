@@ -1,6 +1,6 @@
 package Modules.AsciiImage
 
 // ASCII filter interface
-trait IAsciiFilter {
+abstract class IAsciiFilter {
   def transform(image: AsciiImage): AsciiImage
 }
